@@ -23,5 +23,6 @@ module.exports = {
     opal: {
         stubs: stubs,
         cacheDirectory: './tmp/cache'
-    }
+    },
+    devtool: 'source-map'
 }
