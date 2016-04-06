@@ -9,7 +9,7 @@ end
 
 desc 'dev server'
 task :default do
-  run 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --host $RACKUP_IP'
+  run 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors'
 end
 
 desc 'build bundle.js'

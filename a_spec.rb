@@ -1,3 +1,5 @@
 describe 'Foo' do
-  pending
+  subject { 42 }
+
+  it { is_expected.to eq 43 }
 end
