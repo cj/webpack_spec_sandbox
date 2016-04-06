@@ -1,0 +1,1 @@
+require('./opal-rspec.rb');
