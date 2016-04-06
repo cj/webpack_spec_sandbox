@@ -8,28 +8,27 @@ def run(command)
 end
 
 desc 'dev server'
-task :default do
+task :default => :dependencies do
   run 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors'
 end
 
 desc 'build bundle.js'
-task :build do
+task :build => :dependencies do
   run 'node ./node_modules/webpack/bin/webpack --progress --colors'
 end
 
-desc 'build static copies of opal and opal-rspec'
-task :opal do
+def build_file(dependency, file)
   require 'fileutils'
-  FileUtils.mkdir_p 'build'
-  builder_opal = Opal::Builder.new
-  src = builder_opal.build('opal')
-  File.open('assets/opal.js', 'w+') do |out|
-    out << src
-  end
+  FileUtils.mkdir_p 'assets'
   builder = Opal::Builder.new(stubs: Opal::Processor.stubbed_files, # stubs already specified in lib/opal/rspec.rb
                               compiler_options: { dynamic_require_severity: :ignore }) # RSpec is full of dynamic requires
-  src = builder.build('opal-rspec')
-  File.open('assets/opal-rspec.js', 'w+') do |out|
+  src = builder.build(dependency)
+  File.open(file, 'w+') do |out|
     out << src
   end
 end
+
+file('assets/opal.js') { build_file('opal', 'assets/opal.js') }
+file('assets/opal-rspec.js') { build_file('opal-rspec', 'assets/opal-rspec.js') }
+
+task :dependencies => ['assets/opal.js', 'assets/opal-rspec.js' ]
