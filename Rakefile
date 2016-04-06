@@ -3,7 +3,8 @@ require 'opal-rspec'
 def run(command)
   paths = Opal.paths + [File.dirname(__FILE__)]
   flat_paths = paths.join ':'
-  sh "OPAL_LOAD_PATH=#{flat_paths} #{command}"
+  flat_stubs = Opal::Processor.stubbed_files.to_a.join(',')
+  sh "OPAL_LOAD_PATH=#{flat_paths} OPAL_STUBS=#{flat_stubs} #{command}"
 end
 
 desc 'dev server'
@@ -13,5 +14,5 @@ end
 
 desc 'build bundle.js'
 task :build do
-  run 'node ./node_modules/webpack/bin/webpack'
+  run 'node ./node_modules/webpack/bin/webpack --progress --colors'
 end

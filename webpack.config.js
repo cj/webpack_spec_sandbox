@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+const stubs = process.env.OPAL_STUBS.split(',')
 
 module.exports = {
   entry: "./entry.js",
@@ -17,5 +18,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    opal: {
+        stubs: stubs,
+        cacheDirectory: './tmp/cache'
     }
 }
