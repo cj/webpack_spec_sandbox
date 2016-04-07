@@ -19,7 +19,7 @@ end
 
 def build_file(dependency, file)
   require 'fileutils'
-  FileUtils.mkdir_p 'assets'
+  FileUtils.mkdir_p 'tmp'
   builder = Opal::Builder.new(stubs: Opal::Processor.stubbed_files, # stubs already specified in lib/opal/rspec.rb
                               compiler_options: { dynamic_require_severity: :ignore }) # RSpec is full of dynamic requires
   src = builder.build(dependency)
@@ -28,7 +28,7 @@ def build_file(dependency, file)
   end
 end
 
-file('assets/opal.js') { build_file('opal', 'assets/opal.js') }
-file('assets/opal-rspec.js') { build_file('opal-rspec', 'assets/opal-rspec.js') }
+file('tmp/opal.js') { build_file('opal', 'tmp/opal.js') }
+file('tmp/opal-rspec.js') { build_file('opal-rspec', 'tmp/opal-rspec.js') }
 
-task :dependencies => ['assets/opal.js', 'assets/opal-rspec.js' ]
+task :dependencies => ['tmp/opal.js', 'tmp/opal-rspec.js' ]

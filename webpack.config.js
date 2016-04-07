@@ -4,8 +4,7 @@ const stubs = process.env.OPAL_STUBS.split(',')
 module.exports = {
   entry: ["./entry.js"],
     output: {
-        path: __dirname + '/assets',
-        publicPath: '/assets/',
+        path: __dirname,
         filename: "bundle.js"
     },
     module: {
