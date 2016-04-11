@@ -1,5 +1,7 @@
-describe 'Foo' do
-  subject { 42 }
+require 'lib/stuff'
 
-  it { is_expected.to eq 42 }
+describe Stuff do
+  subject { Stuff.howdy }
+
+  it { is_expected.to eq 43 }
 end

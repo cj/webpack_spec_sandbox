@@ -12,7 +12,7 @@ module.exports = {
             {
                 test: /\.rb$/,
                 exclude: /node_modules/,
-                loader: "opalrb-loader",
+                loader: "opal-webpack",
                 query: {
                     dynamic_require_severity: 'ignore'
                 }
