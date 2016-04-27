@@ -28,6 +28,7 @@ def build_file(dependency, file)
   end
 end
 
+# Doing these outside of webpack to speed up the build, could be done inside the build with commons chunk
 file('tmp/opal.js') { build_file('opal', 'tmp/opal.js') }
 file('tmp/opal-rspec.js') { build_file('opal-rspec', 'tmp/opal-rspec.js') }
 
