@@ -1,3 +1,18 @@
+require 'opal'
+
+Opal::Processor.instance_eval do
+  def stubbed_files
+    ::Opal::Config.stubbed_files
+  end
+
+  def stub_file(name)
+    ::Opal::Config.stubbed_files << name.to_s
+  end
+
+  def dynamic_require_severity=(value)
+  end
+end
+
 require 'opal-rspec'
 
 def run(command)
@@ -9,7 +24,7 @@ end
 
 desc 'dev server'
 task :default => :dependencies do
-  run 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors'
+  run 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --host 0.0.0.0'
 end
 
 desc 'build bundle.js'

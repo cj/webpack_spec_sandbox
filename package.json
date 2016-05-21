@@ -11,6 +11,6 @@
   "dependencies": {
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
-    "opal-webpack": "git+https://github.com/cj/opal-webpack.git"
+    "opal-webpack": "1.0.8"
   }
 }

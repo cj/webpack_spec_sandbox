@@ -2,5 +2,5 @@
 source "https://rubygems.org"
 
 gem 'rake'
-gem 'opal'
+gem 'opal', '0.10.0.beta3'
 gem 'opal-rspec'

@@ -1,5 +1,5 @@
 class Foo
   def self.howdy
-    45
+    43
   end
 end
